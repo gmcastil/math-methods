@@ -100,3 +100,8 @@ sympy-plots-for-*.tex/
 
 # xindy
 *.xdy
+
+# Excluding specific .pdf files allows figures to still be included
+body.pdf
+# For the Mac OS users among us
+.DS_Store
