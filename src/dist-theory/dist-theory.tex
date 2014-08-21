@@ -2,3 +2,28 @@
 
 \chapter{Distribution Theory}
 \label{ch:distribution-theory}
+
+\section{The Dirac $\delta$-Function}
+
+The $\delta$-function can be defined in several different ways.  The
+simplest is to say that
+%
+\begin{equation*}
+  \delta(x) = \left\{
+    \begin{array}{lr}
+      0 & : x \neq 0\\
+      \infty & : x = 0
+    \end{array}
+  \right.
+\end{equation*}
+%
+with $\delta(0)$ being infinite in such a way that
+%
+\begin{equation*}
+  \int_a^b dx\,\delta(x) = 1
+\end{equation*}
+for $a < 0 < b$ (since $\delta(x) = 0$ for $x \neq 0$ this integral is
+independent of $a$ and $b$, so long as $a < 0 < b$).
+
+A second possibility is to define $\delta(x)$ to be the limit as $n
+\rightarrow \infty$ of a 
