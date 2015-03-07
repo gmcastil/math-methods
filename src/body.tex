@@ -7,28 +7,30 @@
 \usepackage{xfrac}
 \usepackage[inline]{enumitem}
 
-\setlength{\textwidth}{14cm} % or whatever length you want
-\calclayout
+\usepackage{ifpdf}
+\ifpdf
+   % Packages for PDF
+   \DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps}
+   \usepackage{hyperref} 
+\else
+   % Packages for DVI
+\fi
 
-\include{latex/macros/macros}
+%\setlength{\textwidth}{14cm} % or whatever length you want
+
+\usepackage{math-style}
 
 \begin{document}
 
-% ----------------------------------------------------------------------------
-% Front matter
-% ----------------------------------------------------------------------------
+\tableofcontents
+\listoffigures
+\listoftables
 
-% ----------------------------------------------------------------------------
-% Main body
-% ----------------------------------------------------------------------------
+\appendix
+\input{./tex/appendix.tex}
 
-% Chapters are written out individually - using \include statements sets each
-% on a new page
-\include{measure-theory/measure-theory}
-
-\include{dist-theory/dist-theory}
-% ----------------------------------------------------------------------------
-% Back matter
-% ----------------------------------------------------------------------------
+% Bibliography
+\clearpage
+\input{./tex/biblio.tex}
 
 \end{document}
