@@ -16,58 +16,132 @@ Consider the indicator function
   \right.
 \end{equation*}
 %
-where $\mathbb{Q}$ represents the set of rational numbers (i.e., those numbers that can be written as a fraction $\sfrac{p}{q}$ with $p$ and $q$ both integers and $q \neq 0$, or equivalently, those numbers that can be written as either terminating or repeating decimals.).  Our goal is to evaluate integrals of the form
+where $\mathbb{Q}$ represents the set of rational numbers (i.e., those
+numbers that can be written as a fraction $\sfrac{p}{q}$ with $p$ and
+$q$ both integers and $q \neq 0$, or equivalently, those numbers that
+can be written as either terminating or repeating decimals.).  Our
+goal is to evaluate integrals of the form
 %
 \begin{equation}
   \label{eq:rational-indicator}
   I = \int_0^1 dx\, f(x)  
 \end{equation}
 %
-The standard approach via Riemann integration is to partition the interval $[0,1]$ into a finite number of subintervals
-%
-\begin{equation*}
-  [0 = a_0, a_1], [a_1, a_2], \cdots, [a_{n-1}, a_n = 1]
-\end{equation*}
-%
-Letting $F_i$ and $f_i$ denote the largest and smallest values of the function $f(x)$ respectively on the $i$th subinterval $[a_{i-1}, a_i]$, we then form the upper and lower sums
+The standard approach via Riemann integration is to partition the
+interval $[0,1]$ into a finite number of subintervals
+$[0 = a_0, a_1], [a_1, a_2], \cdots, [a_{n-1}, a_n = 1]$.
+Letting $F_i$ and $f_i$ denote the largest and smallest values of the
+function $f(x)$ respectively on the $i$th subinterval
+$[a_{i-1}, a_i]$, we then form the upper and lower sums
 %
 \begin{align*}
   U_n &= \sum_{i=1}^n (a_i - a_{i-1})F_i\\
   L_n &= \sum_{i=1}^n (a_i - a_{i-1})f_i
 \end{align*}
 %
-As this partition is refined (and $n$ increases), $U_n$ decreases to a limiting value $U$ and $L_n$ increases to a limiting value $L$.  If $U = L$, then the integral is well defined (in the Riemann sense) and has the value $I = U = L$.  If $U \neq L$, then the Riemann integral is not well defined.
+As this partition is refined (and $n$ increases), $U_n$ decreases to a
+limiting value $U$ and $L_n$ increases to a limiting value $L$.
+If $U = L$, then the integral is well defined (in the Riemann sense) and has
+the value $I = U = L$.  If $U \neq L$, then the Riemann integral is
+not well defined.
 
-Let us now return to the specific example in~\eqref{eq:rational-indicator}.  Since each subinterval $[a_{i-1}, a_i]$ contains both rational and irrational numbers, we must have that $F_i = 1$ and $f_i = 0$ for every subinterval.  Thus we have
+Let us now return to the specific example in~\eqref{eq:rational-indicator}.
+Since each subinterval $[a_{i-1}, a_i]$ contains both rational and
+irrational numbers, we must have that $F_i = 1$ and $f_i = 0$ for every
+subinterval.  Thus we have
 %
 \begin{align*}
   U_n &= \sum_{i=1}^n (a_i - a_{i-1})(1) = a_n - a_0 = 1\\
   L_n &= \sum_{i=1}^n (a_i - a_{i-1})(0) = 0
 \end{align*}
 %
-Since this is true for all partitions of $[0, 1]$, refining the partition does not change these values.  Therefore we have that $U = 1$ and $L = 0$, so that $U \neq L$, and, thus, this integral is not well defined in the sense of Riemann integration.
+Since this is true for all partitions of $[0, 1]$, refining the
+partition does not change these values.  Therefore we have that
+$U = 1$ and $L = 0$, so that $U \neq L$, and, thus, this integral is not
+well defined in the Riemannian sense.
 
-On the other hand, suppose that we could find the length or \emph{measure} $M$ of the set $S$ of rational numbers between 0 and 1.  Then, for $x \in [0, 1]$, the above fuction $f(x)$ has the value $f(x) = 0$ on a set of measure $M$, and it has the value $f(x) = 1$ on the remaining set of measure $1 - M$.  As a result, we could write
+On the other hand, suppose that we could find the length or
+\emph{measure} $M$ of the set $S$ of rational numbers between 0 and 1.
+Then, for $x \in [0, 1]$, the above fuction $f(x)$ has the value
+$f(x) = 0$ on a set of measure $M$, and it has the value $f(x) = 1$ on
+the remaining set of measure $1 - M$.  As a result, we could write
 %
 \begin{equation*}
   I = (M)(0) + (1-M)(1) = 1 - M
 \end{equation*}
 %
 
-It turns out (as will be discussed in the next section) that the Riemann measure of $S$ is not well defined, and, thus, neither is the Riemann integral.  However, we will show in section (cite) that the Lebesgue measure of $S$ is well defined and is given by $M = 0$.\footnote{In some sense, there are very few rational numbers, compared to the set of irrational numbers.}  Therefore the Lebesgue integral exists and has the value
+It turns out (as will be discussed in the next section) that the
+Riemann measure of $S$ is not well defined, and, thus, neither is the
+Riemann integral.  However, we will show in section (cite) that the
+Lebesgue measure of $S$ is well defined and is given by
+$M = 0$.\footnote{
+  In some sense, there are very few rational numbers, compared to the
+  set of irrational numbers.}
+At any rate, the Lebesgue integral exists and has the value
 %
 \begin{equation*}
   I = 1 - M = 1
 \end{equation*}
 %
 
-Lebesgue measure and Lebesgue integration are generalizatinos of their more familiar Riemann counterparts.  If a set has Riemann measure $M$, then it also has Lebesgue measure $M$; if a Riemann integral has the value $I$, then Lebesgue integration yields the same value $I$.  However, many sets that have no well defined Riemann measure do have a well defined Lebesgue measure; and many integrals that are not Riemann-integrable are Lebesgue-integrable.  Thus, Lebesgue measure and integration simply extend the more familiar Riemann concepts.
+Lebesgue measure and Lebesgue integration are generalizatinos of their
+more familiar Riemann counterparts.  If a set has Riemann measure $M$,
+then it also has Lebesgue measure $M$; if a Riemann integral has the
+value $I$, then Lebesgue integration yields the same value $I$.
+However, many sets that have no well defined Riemann measure do have a
+well defined Lebesgue measure; and many integrals that are not
+Riemann-integrable are Lebesgue-integrable.  Thus, Lebesgue measure
+and integration simply extend the more familiar Riemann concepts.
 %
 \section{Riemann Measure}
 %
-Riemann defines the measure of a closed interval $[a, b]$ to be $M = b - a$.  Letting $b = a$, we see that an individual point has Riemann measure zero.  The Riemann measure is then extended to more complicated sets via two rules
+Riemann defines the measure of a closed interval $[a, b]$ to be
+$M = b - a$.  Letting $b = a$, we see that an individual point has Riemann
+measure zero.  The Riemann measure is then extended to more
+complicated sets via two rules
 \begin{enumerate*}
-\item if the sets $S_1, S_2, \cdots, S_n$ are disjoint and have measures $M_1, M_2, \cdots, M_n$, respectively, then their union $S = S_1 \cup S_2 \cup \cdots \cup S_n$ has measure $M = M_1 + M_2 + \cdots + M_n$
-\item if $S$ is a set of measure $M$ and $S'$ is a subset of measure $M\prime$, then the set $S - S'$ (i.e., the set of points in $S$ which are not in $S'$) has measure $M - M'$.  In particular, these rules allow one to show that the non-closed intervals $[a, b]$, $(a, b]$, and $(a, b)$ all have measure $M = b - a$ as well.
+\item
+  if the sets $S_1, S_2, \cdots, S_n$ are disjoint and have
+  measures $M_1, M_2, \cdots, M_n$, respectively, then their union
+  $S = S_1 \cup S_2 \cup \cdots \cup S_n$ has measure
+  $M = M_1 + M_2 + \cdots + M_n$
+\item
+  if $S$ is a set of measure $M$ and $S'$ is a subset of measure
+  $M\prime$, then the set $S - S'$ (i.e., the set of points in $S$
+  which are not in $S'$) has measure $M - M'$.  In particular, these
+  rules allow one to show that the non-closed intervals
+  $[a, b]$, $(a, b]$, and $(a, b)$ all have measure $M = b - a$ as well.
 \end{enumerate*}
-The above rules allow us to find the Riemann measure of any finite collection of intervals (including individual points) with or without endpoints; the measure is just the sum of the lengths of the intervals.  Furthermore, these are the only sets with are Riemann-measurealbe (i.e., have a well defined Riemann measure).
+
+The above rules allow us to find the Riemann measure of any finite
+collection of intervals (including individual points) with or without
+endpoints; the measure is just the sum of the lengths of the
+intervals.  Furthermore, these are the only sets with are
+Riemann-measurealbe (i.e., have a well defined Riemann measure).
+
+\section{Lebesgue Measure}
+%
+Lebesgue extended the Riemann measure by modifying the first of the
+two rules to allow not just finite unions, but also countably infinite
+unions\footnote{
+  A set $S$ is said to be countably infinite, or just
+  countable, if there exists a one-to-one correspondence between the
+  set $S$ and the positive integers $\mathbb{Z_+} = \{1, 2,
+  \cdots\}$}.
+Thus, if the sets $S_1, S_2, \dots$, are disjoint and have measures
+$M_1, M_2, \dots$, respectively, then the union
+$S = \cup_{i = 1}^\infty S_i$ has measure $M = \sum_{i = 1}^\infty
+M_i$.
+This simple change greatly increases the collection of measurable
+sets, without altering the measure of the Riemann-measureable sets.
+
+As an example, consider the following set, a modified Cantor set.
+Beginning with the interval $[0, 1]$, remove the middle third to leave
+the two intervals $[0, \sfrac{1}{3}]$ and $[\sfrac{2}{3}, 1]$.  Next,
+remove the middle ninth of each of these two intervals to leave the
+four intervals
+$[0, \sfrac{4}{27}], [\sfrac{5}{27}, \sfrac{1}{3}]$,
+$[\sfrac{2}{3}, \sfrac{22}{27}]$,
+and $[\sfrac{23}{27}, 1]$.  Continuing this process infinitely many
+times leads to some limiting set $S$.
