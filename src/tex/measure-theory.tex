@@ -29,7 +29,7 @@ goal is to evaluate integrals of the form
 %
 The standard approach via Riemann integration is to partition the
 interval $[0,1]$ into a finite number of subintervals
-$[0 = a_0, a_1], [a_1, a_2], \cdots, [a_{n-1}, a_n = 1]$.
+$[0 = a_0, a_1], [a_1, a_2], \dots, [a_{n-1}, a_n = 1]$.
 Letting $F_i$ and $f_i$ denote the largest and smallest values of the
 function $f(x)$ respectively on the $i$th subinterval
 $[a_{i-1}, a_i]$, we then form the upper and lower sums
@@ -102,10 +102,10 @@ measure zero.  The Riemann measure is then extended to more
 complicated sets via two rules
 \begin{enumerate*}
 \item
-  if the sets $S_1, S_2, \cdots, S_n$ are disjoint and have
-  measures $M_1, M_2, \cdots, M_n$, respectively, then their union
-  $S = S_1 \cup S_2 \cup \cdots \cup S_n$ has measure
-  $M = M_1 + M_2 + \cdots + M_n$
+  if the sets $S_1, S_2, \dots, S_n$ are disjoint and have
+  measures $M_1, M_2, \dots, M_n$, respectively, then their union
+  $S = S_1 \cup S_2 \cup \dots \cup S_n$ has measure
+  $M = M_1 + M_2 + \dots + M_n$
 \item
   if $S$ is a set of measure $M$ and $S'$ is a subset of measure
   $M'$, then the set $S - S'$ (i.e., the set of points in $S$
@@ -128,7 +128,7 @@ two rules to allow not just finite unions, but also
   A set $S$ is said to be countably infinite, or just
   countable, if there exists a one-to-one correspondence between the
   set $S$ and the positive integers $\mathbb{Z_+} = \{1, 2,
-  \cdots\}$}.
+  \dots\}$}.
 Thus, if the sets $S_1, S_2, \dots$, are disjoint and have measures
 $M_1, M_2, \dots$, respectively, then the union
 $S = \cup_{i = 1}^\infty S_i$ has measure $M = \sum_{i = 1}^\infty
@@ -136,7 +136,7 @@ M_i$.
 This simple change greatly increases the collection of measurable
 sets, without altering the measure of the Riemann-measureable sets.
 
-As an example, consider the following set, a modified Cantor set.
+As an example, consider the following set.
 Beginning with the interval $[0, 1]$, remove the middle third to leave
 the two intervals $[0, \sfrac{1}{3}]$ and $[\sfrac{2}{3}, 1]$.  Next,
 remove the middle ninth of each of these two intervals to leave the
@@ -172,7 +172,7 @@ the set consisting of all the removed intervals is
   M' = \sum_{n=0}^\infty N_n l_n =
   \left(1\right)\left(\frac{1}{3}\right) +
   \left(2\right)\left(\frac{1}{27}\right) +
-  \left(4\right)\left(\frac{4}{729}\right) + \cdots \approx 0.44
+  \left(4\right)\left(\frac{4}{729}\right) + \dots \approx 0.44
 \end{equation*}
 %
 Hence, the dust $S = [0, 1] - S'$ has measure
@@ -214,8 +214,103 @@ Lebesgue-integrable function can have countably many discontinuities.
 %
 \section{Covering}
 %
+If a set $S$ has Lebesgue measure $M$ and a subset $S' \subset S$ has
+Lebesgue meaure $M'$, then we must have $M' \leq M$.  Furthermore, if
+a nested sequence of sets $S_1 \supset S_2 \supset S_3 \supset \dots$
+with Lebesgue measures $M_1 \geq M_2 \geq M_3 \geq \dots$,
+respectively, has a limit $S = \lim_{n \rightarrow \infty} S_n$ (the
+rigorous definition is that $S = \cap_{n=1}^\infty S_n$), then this
+limit set S has Lebesgue measure
+$M = \lim_{n \rightarrow \infty} M_n$.  This often provides a method
+for computing the measure of a set.
+
+As an example, we return to the modified Cantor set $S$ constructed in
+section 1C.  Note that the successive stages of construction form a
+nested sequence of sets $S_n$ approaching the limit set $S$.  We began
+with the interval $[0, 1]$ of measure $M_0 = 1$.  We then removed
+the middle $\sfrac{1}{3}$ of the interval leaving two intervals of
+total measure
+\begin{equation*}
+  M_1 = \left(1 - \frac{1}{3}\right) M_0 = 1 - \frac{1}{3}
+\end{equation*}
+%
+Next we remove $\sfrac{1}{9}$ of the remaining measure to yield four
+intervals of total measure
+%
+\begin{equation*}
+  M_2 = \left(1 - \frac{1}{9}\right)M_1 =
+  \left(1 - \frac{1}{9}\right)\left(1 - \frac{1}{3}\right)
+\end{equation*}
+%
+At the $n$th stage of construction then, the total measure of the
+$2^n$ intervals is
+%
+\begin{equation*}
+  M_n = \left(1 - \frac{1}{3}\right)\left(1 - \frac{1}{9}\right)
+    \dots \left(1 - \frac{1}{3^n}\right) = \prod_{r=1}^n
+      \left(1 - \frac{1}{3^r}\right)
+\end{equation*}
+%
+Thus, the measure $M$ of the limiting set $S$ is given by the infinite
+product
+%
+\begin{equation*}
+  M = \lim_{n \rightarrow \infty} M_n =
+    \left(1 - \frac{1}{3}\right)\left(1 - \frac{1}{9}\right)
+      \dots = \prod_{r=1}^\infty \left(1 - \frac{1}{3^r}\right) \approx 0.56
+\end{equation*}
+%
+Often, the measure of a complicated set can be computed (or at least
+bounded) by covering it with a nested seqence of simpler sets.
 \section{Countability}
 %
+As mentioned in section 1C, countable sets of points have Lebesgue
+measure zero.  As a result, changing the value of a function at
+countably many points will not change its Lebesgue integral.  In
+particular, the function discussed in section 1A has the same Lebesgue
+integral on $[0, 1]$ as the constant function $f(x) = 1$.  As a
+result, it is important to recognize countable sets.
+
+By definition, a set is countable if its elements can be placed in a
+one-to-one correspondence with the positive integers.  This is
+equivalent to saying that they can be listed in some order
+$p_1, p_2, \dots$ without missing any.  As a simple example, consider
+the set $\mathbb{Z}$ of all integers.  Listing them in the order
+$0, 1, -1, 2, -2, 3, -3, \dots$ shows that they are countable.  On the
+other hand, listing them as $\dots, -3, -2, -1, 0, 1, 2, 3, \dots$
+would not suffice, since there is no starting point.  Also, the
+listing $01, 2, 3, \dots, -1, -2, -3, \dots$ is not acceptable either,
+since $-1$ will never reached in a finite number of steps.
+
+To show that the the positive rationals are countable, consider their
+arrangement shown in cite, where each entry is the top number divided
+by the left number.  By construction, every positive rational appears
+at least once, with any rational $\sfrac{p}{q}$ is in the $p$th column
+and the $q$th row.  Thus, listing each entry of the table along a
+diagonal (and skipping repeated entries) yields the desired list of
+the positive rationals:
+%
+\begin{equation*}
+  1, \frac{1}{2}, 2, \frac{1}{3}, 3, \frac{1}{4}, \frac{2}{3},
+  \frac{3}{2}, 4, \dots
+\end{equation*}
+%
+For the set $\mathbb{Q}$ of the all rationals, follow the same
+procedure as for the integers $\mathbb{Z}$:
+%
+\begin{equation*}
+  0, 1, -1, \frac{1}{2}, -\frac{1}{2}, 2, -2, \frac{1}{3},
+  -\frac{1}{3}, \dots
+\end{equation*}
+
+Showing that a set is countable or uncountable is a bit of an art.  We
+will conclude this section by showing that the set $\mathbb{R}$ of
+real numbers is not countable.  It is sufficient to show that the real
+numbers in the interval $[0, 1)$ are uncountable.  We begin by writing
+each number in decimal form as $p = 0.x_1x_2x_3\dots$.  Now, suppose
+that the set $S$ of real numbers in $[0, 1)$ were countable.  Then
+these numbers could be listed as $p_1, p_2, \dots$ with $p_i$ being
+the decimal $p_i = 0.$
 \section{Measure Theory}
 %
 \section{Examples of Measures}
