@@ -16,7 +16,11 @@
 \def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
 \makeatother
 
+% Change the empty set symbol
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
 % Commonly used symbols
 \newcommand{\eps}{\epsilon}
 
-\usepackage[inline]{enumitem}
+

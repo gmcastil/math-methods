@@ -311,8 +311,56 @@ each number in decimal form as $p = 0.x_1x_2x_3\dots$.  Now, suppose
 that the set $S$ of real numbers in $[0, 1)$ were countable.  Then
 these numbers could be listed as $p_1, p_2, \dots$ with $p_i$ being
 the decimal $p_i = 0.$
+
+If $p = p_i$, then we must have $y_n = x_n^{\left(i\right)}$ for all
+$n = 1, 2, \dots$.  In particular, this must be true for $n = i$,
+hence $y_i = x_i^{\left(i\right)}$.  But we have guaranteed that
+$y_i \neq x_i^{\left(i\right)}$, so that $p \neq p_i$.  Since this
+argument holds for all $i = 1, 2, \dots$, then we may conclude that
+$p$ is not equal to any $p_i$.  But $p = 0.y_1y_2y_3\dots$ is clearly
+an element of $S$, which is a contradiction, hence the set
+$\mathbb{R}$ is not countable.
+
+Finally, note that the irrational numbers must also be uncountable.
+If they were countable, they could be listed as $p_1, p_2, \dots$.
+Since the rational numbers $\mathbb{Q}$ are countable, they can be
+listed as $q_1, q_2, \dots$.  Now consider their union,
+$p_1, q_1, p_2, q_2, \dots$, which includes all real numbers.  Since
+we have already shown that the real numbers are uncountable, it
+follows by contradiction that the irrational numbers cannot be
+countable.
+
 \section{Measure Theory}
 %
+In this section, we give a careful definition of the term
+\textbf{measure}.  We begin by indicating which sets have a
+well-defined measure.
+
+The collection $\mathbb{S}$ of measurable sets is the collection of
+subsets of some space $R$ which satisfies the following conditions:
+\begin{enumerate}
+\item $\emptyset \in \mathbb{S}$ (the empty set is measurable)
+\item $R \in \mathbb{S}$  (the entire space is measurable)
+\item If $S \in \mathbb{S}$, then its complement
+  $S^c = R - S \in \mathbb{S}$ (if a set is measurable, then so is its
+  complement
+\item If $S_1, S_2, \dots \in \mathbb{S}$, then
+  $\cup_{n=1}^\infty S_n \in \mathbb{S}$ and
+  $\cap_{n=1}^\infty S_n \in \mathbb{S}$ (countable union or
+  intersections of measurable sets measurable).
+\end{enumerate}
+
+A measure $\mu$ is now defined to be any function which assigns a
+unique real to each measurable set $S \in \mathbb{S}$ and satisfies
+the following conditions:
+\begin{enumerate}
+\item $\mu(\emptyset) = 0$ (the empty set has measure zero).
+\item For all $S \in \mathbb{S}$, $\mu(S) \geq 0$ (all measurable sets
+  have nonnegative measure).
+\item If $S_1, S_2, \dots \in \mathbb{S}$ are mutually disjoint (i.e., for
+  $i \neq j$, we have that $S_i \cap S_j = \emptyset$), then
+  $\mu\left(\cup_{n=1}^\infty S_n\right) = \sum_{n=1}^\infty \mu(S_n)$
+\end{enumerate}
 \section{Examples of Measures}
 %
 \section{Important Theorems}
