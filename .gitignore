@@ -106,3 +106,5 @@ body.pdf
 # For the Mac OS users among us
 .DS_Store
 
+# Exclude the temp directory for PNG that ORG mode creates
+ltxpng/
