@@ -1,12 +1,39 @@
+#+LATEX_CLASS: amsbook
+#+LATEX_CLASS_OPTIONS: [10pt]
+#+LATEX_HEADER: \usepackage[inline]{enumitem}
+#+LATEX_HEADER: \usepackage{amssymb}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{amsthm}
+#+LATEX_HEADER: \usepackage{mathtools}
+#+LATEX_HEADER: \usepackage{xfrac}
+#+LATEX_HEADER: \usepackage{ifpdf}
+#+LATEX_HEADER: \ifpdf
+#+LATEX_HEADER:    % Packages for PDF
+#+LATEX_HEADER:    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps}
+#+LATEX_HEADER:    \usepackage{hyperref} 
+#+LATEX_HEADER: \else
+#+LATEX_HEADER:    % Packages for DVI
+#+LATEX_HEADER: \fi
+
 * Introduction
 * Measure Theory
+** Integration and Measure
+** Riemann Measure
+** Lebesgue Measure
+** Lebesgue Integration
+** Covering
+** Countability
+** Measure Theory
+** Examples of Measures
+** Theorems
+** Haursdorff Measure
 * Distribution Theory
 ** Delta Functions
 ** Distributions
 ** Derivatives of Distributions
 ** Distributions of Delta Functions
 ** Discontinuous Functions
-** The Distribution \[\delta\left[f(x)\right]\]
+** The Distribution $\delta\left[f(x)\right]$
 ** Products of Functions and Delta Functions
 ** Products of Distributions
 ** Final Example
