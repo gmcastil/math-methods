@@ -20,7 +20,22 @@
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
+
+
 % Commonly used symbols
 \newcommand{\eps}{\epsilon}
 
+% Taking the limits to infinite or zero
+\newcommand{\inflim}[1]{\lim_{#1 \to \infty}}
+\newcommand{\zerolim}[1]{\lim_{#1 \to 0}}
 
+% Integrate a variable over the real line
+\newcommand{\intreal}[1]{\int_{-\infty}^{\infty} d#1\,}
+% Integrate from 1 to 2 over 3
+\newcommand{\intab}[3]{\int_{#1}^{#2}d#3\,}
+% Inverse 1 root of 2
+\newcommand{\invnroot}[2]{#2^{-\frac{1}{#1}}}
+% First derivative
+\newcommand{\ddx}[1]{\frac{d}{d #1}}
+% First partial derivative
+\newcommand{\ppx}[1]{\frac{\partial}{\partial #1}}

@@ -1,13 +1,12 @@
-% This file is included in body.tex
+
 
 \chapter{Distribution Theory}
 \label{ch:distribution-theory}
 
 \section{The Dirac $\delta$-Function}
-
+\label{sec:delta-function}
 The $\delta$-function can be defined in several different ways.  The
 simplest is to say that
-%
 \begin{equation*}
   \delta(x) = \left\{
     \begin{array}{lr}
@@ -16,14 +15,233 @@ simplest is to say that
     \end{array}
   \right.
 \end{equation*}
-%
 with $\delta(0)$ being infinite in such a way that
-%
 \begin{equation*}
-  \int_a^b dx\,\delta(x) = 1
+  \intab{a}{b}{x}\delta(x) = 1
 \end{equation*}
 for $a < 0 < b$ (since $\delta(x) = 0$ for $x \neq 0$ this integral is
 independent of $a$ and $b$, so long as $a < 0 < b$).
 
 A second possibility is to define $\delta(x)$ to be the limit as $n
-\rightarrow \infty$ of a 
+\rightarrow \infty$ of a delta sequence $\delta_n(x)$ with the understanding
+that, if there is an integral over $x$, the integration is to be performed
+prior to taking the limit as $n \rightarrow \infty$.  There are many possible
+delta sequences, one of which is
+\begin{equation*}
+  \delta_n(x) = \pi^{-\frac{1}{2}} n e^{-n^2x^2}
+\end{equation*}
+Defining $\delta(x) = \lim_{n \to \infty} \delta_n(x)$ yields
+\begin{equation*}
+  \delta(x) = \left\{
+    \begin{array}{lr}
+      0 & : x \neq 0\\
+      \infty & : x = 0
+    \end{array}
+  \right.
+\end{equation*}
+as before.  In addition, we have (since the integral is to be done before
+taking the limit)
+\begin{align*}
+  \intreal{x} \delta(x) &= \inflim{n} \intreal{x} \delta_n(x) \\
+                        &= \inflim{n}
+                          \invnroot{2}{\pi} n \intreal{x} e^{-n^2x^2} \\
+                        &= \inflim{n}
+                          \invnroot{2}{\pi} n
+                          \left(\frac{\pi^{\frac{1}{2}}}{n}\right) \\
+                        &= \inflim{n} \left(1\right) \\
+                        &= 1
+\end{align*}
+and since $\delta(x) = 0$ for $x \neq 0$, this yields
+\begin{equation*}
+  \intab{a}{b}{x} \delta(x) = 1
+\end{equation*}
+whenever $a < 0 < b$, as before.  In fact, using delta sequences, we can show
+that for any function $\phi(x)$, we have that
+\begin{equation*}
+  \intab{a}{b}{x} \phi(x) \delta(x) = \phi(0)
+\end{equation*}
+whenever $a < 0 < b$.
+
+Finally, $\delta(x)$ can be defined by requiring that for any function
+$\phi(x)$, we have that
+\begin{equation*}
+  \intreal{x} \phi(x)\delta(x) = \phi(0)
+\end{equation*}
+Furthermore, it can be shown that this yields
+$\int_z^bdx\, \phi(x)\delta(x) = \phi(0)$ whenever $a < 0 < b$.
+
+The first of these three definitions is rather intuitive, but it is not very
+useful.  To show this, let us attempt to compute the derivative of the product
+$f(x)\delta(x)$ for an arbitrary function $f(x)$.  We have
+\begin{equation*}
+  \ddx{x}\left[f(x)\delta(x)\right] = f'(x)\delta(x) + f(x)\delta'(x)
+\end{equation*}
+Since $\delta(x) = 0$ for $x \neq 0$, then we must also have $\delta'(x) = 0$
+for $x \neq 0$.  Thus, this becomes
+\begin{equation*}
+  \ddx{x} \left[f(x)\delta(x)\right] = f'(0)\delta(x) + f(0)\delta'(x)
+\end{equation*}
+However, the same argument yields
+\begin{equation*}
+  f(x)\delta(x) = f(0)\delta(x)
+\end{equation*}
+and differentiating this gives
+\begin{equation*}
+  \ddx{x} \left[f(x)\delta(x)\right] = f(0)\delta'(x)
+\end{equation*}
+Clearly, something is wrong, but this simplistic definition is unable to
+provide the answer.
+
+The second definition in terms of delta sequences is better, but is also unable
+to solve the above problem.  In factd, it yields
+\begin{align*}
+  \delta'(x) &= \inflim{n} \delta_n'(x) \\
+             &= \inflim{n}
+               \D{}{x} \left(\invnroot{2}{\pi} n e^{-n^2x^2}\right) \\
+             &= \inflim{n} (-2\invnroot{2}{\pi} n^3 x e^{-n^2x^2} \\
+             &= 0
+\end{align*}
+for all $x$.  However, we also have
+\begin{align*}
+  \delta''(x) &= \inflim{n} \delta_n''(x) \\
+              &= \inflim{n} \D[2]{}{x}
+                \left(\invnroot{2}{\pi} n e^{-n^2x^2}\right) \\
+              &= \inflim{n} (-2 \invnroot{2}{\pi} n^3 e^{-n^2x^2}
+                + 4 \invnroot{2}{\pi} n^5 x^2 e^{-n^2x^2}) \\
+              &= \left\{\begin{array}{cr}
+                   0       & : x \neq 0 \\
+                   -\infty & : x = 0
+                 \end{array}\right.
+\end{align*}
+
+But, if $\delta'(x) = 0$, we should have $\delta''(0) = 0$ also, so something
+is again wrong.
+
+The problem here is that the delta function is not really a function.  It
+cannot be defined by specifying its value at all points.  The third definition
+given earlier avoids this problem and is an acceptable definition.  We will
+return to this definition in the next section.
+
+\section{Distributions}
+\label{sec:distributions}
+As mentioned in the previous section, the delta function is not really a
+function; it is a distribution.  A distribution is a functional - it is
+specified by giving its values for all functions $\phi(x)$, rather than for all
+points $x$.  More formally, the delta function is the distribution
+\begin{equation*}
+  \delta[\phi] = \phi(0)
+\end{equation*}
+
+Normal functions are special cases of distributions: as a distribution, a
+function $f(x)$ is defined as
+\begin{equation*}
+  f[\phi] = \intreal{x} \phi(x) f(x)
+\end{equation*}
+Because of this, for a general distribution $D[\phi]$, one often uses the
+notation
+\begin{equation*}
+  D[\phi] = \intreal{x} \phi(x) D(x)
+\end{equation*}
+and refers to the `function' $D(x)$.  In this notation, the above definition of
+the delta function becomes
+\begin{equation*}
+  \intreal{x} \phi(x) \delta(x) = \phi(0)
+\end{equation*}
+which is just the third definition from Section~\ref{sec:delta-function}.  In
+the next section, we will show how this definition solves the problem of
+differentiating $f(x)\delta(x)$.  The main point of this section is that, for a
+general distribution, $D(x)$ is defined only when an integral over $x$ is
+present (i.e., only the quantity
+\begin{equation*}
+  D[\phi] = \intreal{x} \phi(x) D(x)
+\end{equation*}
+is really defined - $D(x)$ itself is not defined).
+\section{Derivatives of Distributions}
+A function $f(x)$ corresponds to the distribution
+\begin{equation*}
+  f[\phi] = \intreal{x} \phi(x) f(x)
+\end{equation*}
+Similarly, its derivative $f'(x)$ corresponds to the distribution
+\begin{equation*}
+  f'[\phi] = \intreal{x} \phi(x) f'(x)
+\end{equation*}
+Integrating by parts in this last equation yields
+\begin{align*}
+  f'[\phi] &= -\intreal{x} \phi'(x) f(x) \\
+           &= -f[\phi']
+\end{align*}
+Note that we have assumed that $\phi(x) \rightarrow 0$ as $x$ approaches
+$\pm \infty$.  This is because the class of functions $\phi(x)$ on which
+distributions are defined must satisfy certain restrictions.  In particular,
+$\phi(x)$ and all of its derivatives must exist, be continuous, and vanish as
+$x$ approaches $\pm \infty$.
+
+The above result motivates the definition of the derivative of a general
+distribution as
+\begin{equation*}
+  D'[\phi] = -D[\phi']
+\end{equation*}
+or, in terms of the `function' $D(x)$,
+\begin{equation*}
+  \intreal{x} \phi(x) D'(x) = -\intreal{x} \phi'(x) D(x).
+\end{equation*}
+An important point is that, like the distribution itself, the derivative of a
+general distribution is defined only inside of an integral.
+
+We are now prepared to return to the problem of differentiating
+$f(x)\delta(x)$.  By definition, or by integration by parts, we have
+\begin{align*}
+  \intreal{x} \phi(x) \D{}{x} \left[f(x)\delta(x)\right]
+  &= -\intreal{x} \phi'(x) \left[f(x)\delta(x)\right] \\
+  &= -\intreal{x} \left[f(x) \phi'(x)\right] \delta(x) \\
+  &= -f(0) \phi'(0) \\
+  &= -f(0) \intreal{x} \phi'(x) \delta(x) \\
+  &= f(0) \intreal{x} \phi(x) \delta'(x) \\
+  &= \intreal{x} \phi(x) \left[f(0) \delta'(x)\right]
+\end{align*}
+Since this must be true for any function $\phi(x)$ we must have
+\begin{equation*}
+  \D{}{x} \left[f(x)\delta(x)\right] = f(0)\delta'(x)
+\end{equation*}
+Thus the second calculation in Section~\ref{sec:delta-function} gave the
+correct answer.  The problem with the first calculation in
+Section~\ref{sec:delta-function} is that
+$f(x)\delta'(x) \neq f(0)\delta'(x)$.  In fact, we have that
+\begin{align*}
+  \intreal{x} \phi(x)\left[f(x)\delta'(x)\right]
+  &= \intreal{x} \left[f(x)\phi(x)\right] \delta'(x) \\
+  &= -\intreal{x} \left[f'(x)\phi(x) + f(x)\phi'(x)\right] \delta(x) \\
+  &= -\left[f'(0)\phi(0) + f(0)\phi'(0)\right] \\
+  &= -f'(0) \intreal{x} \phi(x) \delta(x)
+                 + f(0) \intreal{x} \phi(x) \delta'(x) \\
+  &= \intreal{x} \phi(x) \left[f(0) \delta'(x) - f'(0)\delta(x)\right]
+\end{align*}
+Hence, we must have that
+\begin{equation*}
+  f(x)\delta'(x) = f(0)\delta'(x) - f'(0)\delta(x).
+\end{equation*}
+If this result is used in the first calculation of
+Section~\ref{sec:delta-function}, the correct value is again obtained.
+
+Note the following subtle point: $f(x)\delta'(x)$ depends only on the
+properties of $f(x)$ at $x = 0$, but it depends on more than just the value of
+$f(x)$ at $x = 0$.  The same is true for higher-order derivatives.  In fact, we
+have that
+\begin{equation*}
+  f(x)\delta^{(n)}(x) = \sum_{m=0}^n \left(-1\right)^m \frac{n!}{m!(n-m)!}
+                                              f^{(m)}(0) \delta^{(n-m)}(x)
+\end{equation*}
+\section{Derivatives of Delta Functions}
+
+\section{The Distribution $\delta[f(x)]$}
+
+\section{Products of Functions and Delta Functions}
+
+\section{Products of Distributions}
+
+\section{A Final Example}
+
+
+%%% Local Variables:
+%%% TeX-master: "body"
+%%% End:

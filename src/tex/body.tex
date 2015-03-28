@@ -1,0 +1,54 @@
+\documentclass[10pt]{amsbook}
+
+\usepackage[inline]{enumitem}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{xfrac}
+\usepackage{cool}
+
+\usepackage{ifpdf}
+\ifpdf
+   % Packages for PDF
+   \DeclareGraphicsExtensions{.pdf,.png,.jpg,.mps}
+   \usepackage{hyperref} 
+\else
+   % Packages for DVI
+\fi
+
+\usepackage{math-style}
+
+\begin{document}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+\input{./measure-theory.tex}
+\input{./dist-theory.tex}
+% \input{./linear-algebra.tex}
+% \input{./calculus-variations.tex}
+% \input{./complex-variables.tex}
+% \input{./series-products.tex}
+% \input{./sums-integrals.tex}
+% \input{./integral-transforms.tex}
+% \input{./perturbation-theory.tex}
+% \input{./diff-equations.tex}
+% \input{./sturm-liouville.tex}
+% \input{./gamma-function.tex}
+% \input{./bessel-functions.tex}
+% \input{./legendre-functions.tex}
+% \input{./special-functions.tex}
+% \input{./greens-functions.tex}
+% \input{./integral-equations.tex}
+% \input{./probability.tex}
+% \input{./functional-integration.tex}
+
+\appendix
+\input{./appendix.tex}
+
+% Bibliography
+\clearpage
+\input{./biblio.tex}
+
+\end{document}
