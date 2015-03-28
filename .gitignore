@@ -103,6 +103,7 @@ sympy-plots-for-*.tex/
 
 # Excluding specific .pdf files allows figures to still be included
 body.pdf
+_region_.*
 # For the Mac OS users among us
 .DS_Store
 
