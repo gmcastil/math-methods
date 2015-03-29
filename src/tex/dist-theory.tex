@@ -232,16 +232,233 @@ have that
                                               f^{(m)}(0) \delta^{(n-m)}(x)
 \end{equation*}
 \section{Derivatives of Delta Functions}
+We now know that the delta function $\delta(x)$ is defined by the relation
+\begin{equation*}
+  \intreal{x} \phi(x) \delta(x) = \phi(0)
+\end{equation*}
+but what is meant by its derivative $\delta'(x)$?  By definition, or by
+integration by parts, we have
+\begin{align*}
+  \intreal{x} \phi(x) \delta'(x) &= -\intreal{x} \phi'(x) \delta(x) \\
+                                 &= -\phi'(0)
+\end{align*}
+As for the delta function itself, this relation defines the derivative
+$\delta'(x)$.
+
+For higher-order derivatives $\delta^{(n)}(x)$, repeated integration by parts
+yields the following definition:
+\begin{equation*}
+  \intreal{x} \phi(x) \delta^{(n)}(x) = (-1)^n \phi^{(n)}(0)
+\end{equation*}
+\section{Discontinuous Functions}
+Hhaving examined the derivative of the delta function, we now consider its
+integral
+\begin{equation*}
+  \theta(x) = \intab{-\infty}{x}{z} \delta(z) =
+  \left\{
+    \begin{array}{lr}
+      0 & : x < 0\\
+      1 & : x > 0
+    \end{array}
+  \right.
+\end{equation*}
+($\theta(x)$ is not defined at $x = 0$).  This function $\theta(x)$ is known as
+the theta function (or the Heaviside function).  Note that this function is
+discontinuous, and that its derivative $\theta'(x) = \delta(x)$ is a delta
+function.
+
+This example illustrates a general property: the derivative of a discontinuous
+function contains delta functions.  To see this, consider a more general
+example:
+\begin{equation*}
+  f(x) = \left\{
+    \begin{array}{lr}
+      f_1(x) \quad x < x_0
+      f_2(x) \quad x > x_0
+    \end{array}\right.
+\end{equation*}
+where $f_1(x)$ and $f_2(x)$ are continuous and differentiable, but $f_1(x_0)
+\neq f_2(x_0)$, so that $f(x)$ has a discontinuity at $x = x_0$. The derivative
+of $f(x)$ is now found as follows:
+\begin{align*}
+  \intreal{x} \phi(x) f'(x)
+      &= -\intreal{x} \phi'(x) f(x) \\
+      &= -\intab{-\infty}{x_0}{x} \phi'(x) f_1(x)
+      - \intab{x_0}{\infty}{x} \phi'(x) f_2(x) \\
+      % This expression needs to be split properly
+      &= -\left\{\left[\phi(x)f_1(x)\right]_{-\infty}^{x_0}
+            -\intab{-\infty}{x_0}{x} \phi(x) f'_1(x)\right\}
+         -\left\{\left[\phi(x)f_2(x)\right]_{x_0}^\infty
+            -\intab{x_0}{\infty}{x} \phi(x) f'_2(x)\right\} \\
+      % This expression needs to be split properly
+      &= -\left[\phi(x_0)f_1(x_0) - 0\right]
+            + \intab{-\infty}{x_0}{x} \phi(x) f'_1(x)
+         - \left[0 - \phi(x_0)f_2(x_0)\right]
+            + \intab{x_0}{\infty}{x} \phi(x) f'_2(x) \\
+      % This expression needs to be split properly
+      &= \intab{-\infty}{x_0}{x} \phi(x) f'_1(x)
+        + \intab{x_0}{\infty}{x} \phi(x) f'_2(x)
+        + \left[f_2(x_0) - f_1(x_0)\right] \phi(x_0)
+\end{align*}
+Letting
+\begin{equation*}
+  f'^{(p)}(x) = \left\{
+    \begin{array}{lr}
+      f'_1(x) &: x < x_0 \\
+      f'_2(x) &: x > x_0
+    \end{array}\right.
+\end{equation*}
+denote the piecewise derivative of $f(x)$ allos us to rewrite the above
+expressions as
+\begin{align*}
+  \intreal{x} \phi(x) f'(x) &= \intreal{x} \phi(x) f'^{(p)}(x)
+                              + \left[f_2(x_0) - f_1(x_0)\right]\phi(x_0) \\
+                            &= \intreal{x} \phi(x) f'^{(p)}(x)
+                              + \left[f_2(x_0) - f_1(x_0)\right]
+                                \intreal{x} \phi(x)\delta(x - x_0) \\
+                            &= \intreal{x} \phi(x)
+                              \left\{f'^{(p)}(x)
+                                + \left[f_2(x_0) - f_1(x_0)\right]
+                                  \delta(x - x_0)\right\}
+\end{align*}
+Hence we have that
+\begin{equation*}
+  f'(x) = f'^{(p)}(x) + \left[f_2(x_0) - f_1(x_0)\right] \delta(x - x_0)
+\end{equation*}
+
+Thus, we see that the piecewise derivative is not the complete derivative.  The
+complete derivative includes an additional delta function term.  In general,
+the derivative of a discontinuous function is the sum of its piecwise
+derivative and a delta function at each point of discontinuiuty multiplied by
+the `jump' at that point.  This jump may be either positive or negative,
+depending upon whether the function increases or decreases at the
+discontinuity.
+
+We may also obtain the above result in a different manner.  Using the theta
+functions
+\begin{equation*}
+  \theta(x - x_0) = left\{
+    \begin{array}{lr}
+      0 \quad x-x_0 < 0
+      1 \quad x-x_0 > 0
+    \end{array}\right.
+\end{equation*}
 
 \section{The Distribution $\delta[f(x)]$}
 
 \section{Products of Functions and Delta Functions}
 
 \section{Products of Distributions}
+In general, distributions may be multiplied; however, there is one
+restriction.  In order to understand this restriction, we must discuss the
+singularities of distributions.  Basically, a singularity is a point where a
+distribution or one of its derivatives is not well defined.  For example, the
+delta function $\delta(x - a)$ and its derivatives $\delta^{(n)}(x - a)$ are
+all singular at $x = a$.  Furthermore, all integrals of $\delta(x - a)$ are
+singular at $x = a$, since some derivative of such an integral is $\delta(x -
+a)$, which is singular (in particular, $\theta(x - a)$ is singular at $x =
+a$).  Thus, a function is singular at any point where either function itself or
+one of its derivatives is discontinuous.
 
+The product of two distributions with no singularities in commons is always
+well defined, but the product of two distributions with singularities at the
+same point may or may not be well defined.  As an example, consider the
+distribution $D_1(x) = \theta(x)\delta(x)$ which is defined by the relation
+\begin{align*}
+  \intreal{x} \phi(x)D_1(x) &= \intreal{x} \phi(x) \theta(x) \delta(x) \\
+                            &= \phi(0) \theta(0)
+\end{align*}
+Since $\theta(0)$ is not well defined, then neither is
+$D_1(x) = \theta(x)\delta(x)$.
+
+As another example, consider $D_2(x) = \abs{x}\delta{x}$.  Since
+\begin{align*}
+  \intreal{x} \phi(x) D_2(x) &= \intreal{x} \abs{x} \phi(x) \delta(x) \\
+                             &= \abs{0} \phi(0)
+                             &= 0
+\end{align*}
+is well defined, then so is $D_2(x) = \abs{x}\delta(x)$.  On the other hand,
+$D_3 = \abs{x} \delta'(x)$ satisfies
+\begin{align*}
+  \intreal{x} \phi(x) D_3(x) &= \intreal{x} \abs{x} \phi(x) \delta'(x) \\
+                             &= -\intreal{x}
+                               \delta(x) \D{}{x} \left[\abs{x}\phi(x)\right]
+\end{align*}
+Since $\abs{x}$ is continuous, then its derivative is just the piecewise
+derivative, since there are no jumps
+\begin{align*}
+\D{}{x} \abs{x} &= \left\{
+                  \begin{array}{lr}
+                    \D{}{x} (x) & \quad x > 0 \\
+                    \D{}{x} (-x) & \quad x < 0
+                  \end{array}\right. \\
+                &= \left\{
+                  \begin{array}{lr}
+                    1 & \quad x > 0 \\
+                    -1 & \quad x < 0
+                  \end{array}\right. \\
+                &= \left\{
+                  \begin{array}{lr}
+                    2(1) - 1 \quad x > 0 \\
+                    2(0) - 1 \quad x < 0
+                  \end{array}\right. \\
+                &= 2\theta(x) - 1
+\end{align*}
+Thus, we have that
+\begin{align*}
+  \intreal{x} \phi(x) D_3(x)
+       &= -\intreal{x} \delta(x) \D{}{x} \left[\abs{x}\phi(x)\right] \\
+       &= -\intreal{x} \delta(x) \left\{\left[2\theta(x) - 1\right]\phi(x)
+                                         + \abs{x}\phi'(x)\right\} \\
+       &= -\left[2\theta(0) - 1\right] \phi(0)
+\end{align*}
+Since $\theta(0)$ is not well defined, then neither is
+$D_3(x) = \abs{x}\delta'(x)$.
+
+Finally, if the product of two distributions with singularities at the same
+point is well defined, differentiating this distribution may require some
+care.  As an example, consider the distribution
 \section{A Final Example}
+In condensed-matter theory, one often encounters the quantity
+\begin{equation*}
+  D(x) = \theta(a + \eps - x)\theta(x - a)
+\end{equation*}
+with $\eps > 0$ (this quantity appears when considering the excitation of
+electrons across an energy $\eps$ at zero temperature).  Since
 
+\begin{align*}
+  D(x) &= \left\{
+         \begin{array}{lr}
+           (0)(1) & : x > a + \eps \\
+           (1)(1) & : a < x < a + \eps \\
+           (1)(0) & : x < a
+         \end{array}\right. \\
+       &= \left\{
+         \begin{array}{lr}
+           1 & : a < x < a + \eps \\
+           0 & : \textup{otherwise}
+         \end{array}\right.
+\end{align*}
+then, as $\eps \to 0$, we have $D(x) \to 0$.  However, as $\eps \to 0$, what is
+$D(x)$ to leading order in $\eps$?
 
+Consider the Taylor expansion of $D(x)$
+\begin{align*}
+  D(x) &= \left[\theta(a - x) + \eps \theta'(a - x)\right] \theta(x - a) \\
+       &= \theta(a - x) \theta(x - a) + \eps\delta(a - x)\theta(x - a)) \\
+       &= 0 + \eps\delta(x - a)\theta(x - a) \\
+       &= \eps\theta(x - a)\delta(x - a)
+\end{align*}
+which is not well defined.  However, we have that
+\begin{align*}
+  \intreal{x} \phi(x)D(x)
+    &= \intreal{x} \phi(x) \theta(a + \eps - x)\theta(x - a) \\
+    &= \intab{a}{\infty}{x} \phi(x) \theta(a + \eps - x) \\
+    &= \intab{a}{a + \eps}{x} \phi(x) \\
+    &= \eps \phi(a) \\
+    &= \eps \intreal{x} \phi(x) \delta(x - a)
+\end{align*}
+hence $D(x) = \eps\delta(x - a)$ to leading order in $\eps$ as $\eps \to 0$.
 %%% Local Variables:
 %%% TeX-master: "body"
 %%% End:
