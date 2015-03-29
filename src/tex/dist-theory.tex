@@ -337,17 +337,238 @@ discontinuity.
 We may also obtain the above result in a different manner.  Using the theta
 functions
 \begin{equation*}
-  \theta(x - x_0) = left\{
+  \theta(x - x_0)
+  = \left\{
     \begin{array}{lr}
-      0 \quad x-x_0 < 0
-      1 \quad x-x_0 > 0
+      0 &\quad x-x_0 < 0 \\
+      1 &\quad x-x_0 > 0
+    \end{array}\right.
+  = \left\{
+    \begin{array}{lr}
+      0 &\quad x < x_0 \\
+      1 &\quad x > x_0
     \end{array}\right.
 \end{equation*}
-
-\section{The Distribution $\delta[f(x)]$}
+and
+\begin{equation*}
+  \theta(x_0 - x)
+  = \left\{
+    \begin{array}{lr}
+      0 &\quad x_0 - x < 0 \\
+      1 &\quad x_0 - x > 0
+    \end{array}\right.
+  = \left\{
+    \begin{array}{lr}
+      0 &\quad x > x_0 \\
+      1 &\quad x < x_0
+    \end{array}\right.
+  = \left\{
+    \begin{array}{lr}
+      1 &\quad x < x_0 \\
+      0 &\quad x > x_0
+    \end{array}\right.
+\end{equation*}
+allows us to write
+\begin{equation*}
+  f(x)
+  = \left\{
+    \begin{array}{lr}
+      f_1(x) &\quad x < x_0 \\
+      f_2(x) &\quad x > x_0
+    \end{array}\right.
+  = \quad f_1(x)\theta(x_0 - x) + f_2(x)\theta(x - x_0)
+\end{equation*}
+and the piecewise derivative
+\begin{equation*}
+  f'^{(p)}(x)
+  = \left\{
+    \begin{array}{lr}
+      f'_1(x) &\quad x < x_0 \\
+      f'_2(x) &\quad x > x_0
+    \end{array}\right.
+  = \quad f'_1(x)\theta(x_0 - x) + f'_2(x)\theta(x - x_0)
+\end{equation*}
+Differentiating this expression for $f(x)$ yields
+\begin{align*}
+  f'(x) &= f'_1(x)\theta(x_0 - x) - f_1(x)\theta'(x_0 - x)
+                   + f'_2(x)\theta(x - x_0) + f_2(x)\theta'(x - x_0) \\
+        &= f'_1(x)\theta(x_0 - x) + f'_2\theta(x - x_0)
+                   + f_2(x)\delta(x - x_0) - f_1(x)\delta(x_0 - x) \\
+        &= f'^{(p)}(x) + f_2(x_0)\delta(x - x_0) - f_1(x_0)\delta(x - x_0) \\
+        &= f'^{(p)}(x) + \left[f_2(x_0) - f_1(x_0)\right]\delta(x - x_0)
+\end{align*}
+as before.
+\section{The Distribution $\delta\left[f(x)\right]$}
+If $f(x)$ is a function with only first-order zeros, then we may define the
+distribution $\delta\left[f(x)\right]$.  We begin by denoting the zeros of
+$f(x)$ by $\left\{x_n\right\}$.  Since we must have
+$\delta\left[f(x)\right] = 0$ unless $f(x) = 0$ (i.e., unless $x$ is one of the
+zeros $x_n$), then $\delta\left[f(x)\right]$ must be a linear combination of
+delta functions and their derivatives at the points $x_n$.  To find the
+coefficients of these delta functions, we need only consider values of $x$
+which are infinitesimally close to the zeros $x_n$.  Thus, we let
+$x = x_n + \eps$ with $\eps$ infinitesimal.  Since $f(x_n) = 0$,l we have
+(since $\eps$ is infinitesimal, we need only keep terms to lowest in order in
+$\eps$
+\begin{align*}
+  f(x) &= f(x_n + \eps) \\
+       &= f(x_n) + \eps f'(x_n) \\
+       &= \eps f'(x_n)
+\end{align*}
+hence
+\begin{equation*}
+  \delta\left[f(x)\right] = \delta\left[\eps f'(x_n)\right]
+\end{equation*}
+Now, for $\alpha \neq 0$, we have (letting $y = \alpha x$)
+\begin{align*}
+  \intreal{x} \phi(x) \delta(\alpha x)
+           &= \left\{
+             \begin{array}{lr}
+               \intreal{y} \left(\frac{1}{\alpha}\right)
+                  \phi\left(\frac{y}{\alpha}\right) \delta(y) \quad \alpha > 0 \\
+               \intab{\infty}{-\infty}{y} \left(\frac{1}{\alpha}\right)
+                  \phi\left(\frac{y}{\alpha}\right) \delta(y) \quad \alpha < 0
+             \end{array}\right. \\
+           &= \left\{
+             \begin{array}{lr}
+               \frac{1}{\alpha} \intreal{y}
+                 \phi\left(\frac{y}{\alpha}\right)\delta(y) \quad \alpha > 0 \\
+               -\frac{1}{\alpha} \intreal{y}
+                 \phi\left(\frac{y}{\alpha}\right)\delta(y) \quad \alpha < 0 \\
+             \end{array}\right. \\
+           &= \left\{
+             \begin{array}{lr}
+               \frac{1}{\alpha} \phi(0) \quad \alpha > 0 \\
+               -\frac{1}{\alpha} \phi(0) \quad \alpha < 0
+             \end{array}\right. \\
+           &= -\frac{1}{\abs{\alpha}} \phi(0) \\
+           &= \frac{1}{\abs{\alpha}} \intreal{x} \phi(x) \delta(x) \\
+           &= \intreal{x} \phi(x) \left[\frac{1}{\abs{\alpha}} \delta(x)\right]
+\end{align*}
+hence
+\begin{equation*}
+  \delta(\alpha x) = \frac{1}{\abs{\alpha}} \delta(x)
+\end{equation*}
+so that the previous expression becomes
+\begin{align*}
+  \delta\left[f(x)\right] &= \delta\left[\eps f'(x_n)\right] \\
+                          &= \frac{1}{\abs{f'(x_n)}} \delta(\eps) \\
+                          &= \abs{f'(x_n)}^{-1} \delta(x - x_n)
+\end{align*}
+which is valid for $x$ infinitesimally close to the zero $x_n$.  Thus, the
+complete expression (valid for all $x$) must be
+\begin{equation*}
+  \delta\left[f(x)\right] = \sum_n \abs{f'(x_n)}^{-1} \delta(x - x_n)
+\end{equation*}
 
 \section{Products of Functions and Delta Functions}
+Consider the distribution
+\begin{equation*}
+  D_1(x) = x \delta(x)
+\end{equation*}
+Since
+\begin{align*}
+  \intreal{x} \phi(x) D_1(x) &= \intreal{x} \phi(x) \left[x \delta(x)\right] \\
+                             &= \intreal{x} x \phi(x) \delta(x) \\
+                             &= (0) \phi(0) \\
+                             &= 0
+\end{align*}
+then this distribution $D_1(x)$ must be identically zero, hence
+\begin{equation*}
+  x\delta(x) = 0
+\end{equation*}
+More generally, we have that for any $\alpha > 0$
+\begin{equation*}
+  x^{\alpha} \delta(x) = 0
+\end{equation*}
 
+Net, consider the distribution
+\begin{equation*}
+  D_2(x) = x^{\alpha} \delta'(x)
+\end{equation*}
+Since,
+\begin{align*}
+  \intreal{x} \phi D_2(x)
+        &= \intreal{x} x^{\alpha} \phi(x) \delta'(x) \\
+        &= -\intreal{x} \left[\alpha x^{\alpha-1} \phi(x)
+                        + x^{\alpha} \phi'(x))\right] \delta(x) \\
+        &= -\left[\alpha x^{\alpha-1} \phi(x) + x^{\alpha} \phi'(x)\right]_{x = 0}
+\end{align*}
+which vanishes for $\alpha > 1$.  Thus, for $\alpha > 1$, we have
+\begin{equation*}
+  x^{\alpha}\delta'(x) = 0.
+\end{equation*}
+In general, we have
+\begin{equation*}
+  x^{\alpha}\delta^{(n)}(x) = 0
+\end{equation*}
+for $\alpha > n$.
+
+Now, suppose that we want to find the solution $f(x)$ of the equation
+\begin{equation*}
+  x f(x) = 0
+\end{equation*}
+For $x \neq 0$, we can divide by $x$ to yield
+\begin{equation*}
+  f(x) = 0
+\end{equation*}
+but what about the point $x = 0$?  Since $f(x)$ vanishes for all $x \neq 0$,
+then it must be a linear combination of the form
+\begin{equation*}
+  f(x) = \sum_{n=0}^\infty A_n \delta^{(n)}(x)
+\end{equation*}
+Multiplying by $x$ then yields
+\begin{align*}
+  x f(x) &= \sum_{n=0}^\infty A_n x \delta^{(n)}(x) \\
+         &= \sum_{n=1}^\infty A_n x \delta^{(n)}(x)
+\end{align*}
+since $x \delta^{(n)}(x) = 0$ for $n < 1$ (i.e., for $n = 0$).  Since
+$xf(x)=0$, then we must have $A_1 = A_2 = \dots = 0$, but $A_0$ is arbitrary.
+Thus, the general solution of the equation
+\begin{equation*}
+  xf(x) = 0
+\end{equation*}
+is
+\begin{equation*}
+  f(x) = A \delta(x)
+\end{equation*}
+where $A$ is an arbitrary constant.
+
+Next, consider the equation
+\begin{equation*}
+  xf(x) = g(x)
+\end{equation*}
+For $x \neq 0$, we have
+\begin{equation*}
+  f(x) = \frac{g(x)}{x}
+\end{equation*}
+but the general solution is
+\begin{equation*}
+  f(x) = \frac{g(x)}{x} + A \delta(x)
+\end{equation*}
+where $A$ is again arbitrary (this is true even if $\tfrac{g(x)}{x}$ is finite
+at $x=0$).  More generally, the equation
+\begin{equation*}
+  x^\alpha f(x) = g(x)
+\end{equation*}
+has the general solution
+\begin{equation*}
+  f(x) = x^{-\alpha} g(x) + \sum_{n=0}^\alpha A_n \delta^{(n)}(x)
+\end{equation*}
+where the sum is over all nonnegative integers less than $\alpha$ (and the
+$A_n$ are arbitrary constants).
+
+Finally, for equations of the form
+\begin{equation*}
+  h(x) f(x) = g(x)
+\end{equation*}
+has the general solution
+\begin{equation*}
+  f(x) = \frac{g(x)}{h(x)} + \sum_m \sum_{n=0}^{N_m} A_{mn}\delta^{(n)}(x-x_m)
+\end{equation*}
+where $\{x_m\}$ are the zeros of $h(x)$, and $N_m$ is the order of the zero
+$x_m$.  These extra pieces will be very important later when using Fourier
+transforms to solve differential equations.
 \section{Products of Distributions}
 In general, distributions may be multiplied; however, there is one
 restriction.  In order to understand this restriction, we must discuss the
